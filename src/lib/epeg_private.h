@@ -30,13 +30,14 @@ struct _Epeg_Image
    struct stat                     stat_info;
    unsigned char                  *pixels;
    unsigned char                 **lines;
-   
+   unsigned char                 **cropped_lines;
+
    char                            scaled : 1;
-   
+
    int                             error;
-   
+
    Epeg_Colorspace                 color_space;
-   
+
    struct {
       char                          *file;
       struct {
@@ -64,6 +65,7 @@ struct _Epeg_Image
       } mem;
       int                          x, y;
       int                          w, h;
+      int                          crop_t, crop_b, crop_l, crop_r;
       char                        *comment;
       FILE                        *f;
       struct jpeg_compress_struct  jinfo;
@@ -81,7 +83,7 @@ METHODDEF(void) _jpeg_term_source(j_decompress_ptr cinfo);
 METHODDEF(void) _jpeg_init_destination(j_compress_ptr cinfo);
 METHODDEF(boolean) _jpeg_empty_output_buffer (j_compress_ptr cinfo);
 METHODDEF(void) _jpeg_term_destination (j_compress_ptr cinfo);
-    
+
 METHODDEF(void) _emit_message (j_common_ptr cinfo, int msg_level);
 METHODDEF(void) _output_message (j_common_ptr cinfo);
 METHODDEF(void) _format_message (j_common_ptr cinfo, char * buffer);

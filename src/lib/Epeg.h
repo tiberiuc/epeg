@@ -38,7 +38,7 @@ extern "C" {
 	  EPEG_CMYK
      }
    Epeg_Colorspace;
-   
+
    typedef struct _Epeg_Image          Epeg_Image;
    typedef struct _Epeg_Thumbnail_Info Epeg_Thumbnail_Info;
 
@@ -49,7 +49,7 @@ extern "C" {
 	int                     w, h;
 	char                   *mimetype;
      };
-   
+
    EAPI Epeg_Image   *epeg_file_open                 (const char *file);
    EAPI Epeg_Image   *epeg_memory_open               (unsigned char *data, int size);
    EAPI void          epeg_size_get                  (Epeg_Image *im, int *w, int *h);
@@ -62,13 +62,14 @@ extern "C" {
    EAPI void          epeg_thumbnail_comments_get    (Epeg_Image *im, Epeg_Thumbnail_Info *info);
    EAPI void          epeg_comment_set               (Epeg_Image *im, const char *comment);
    EAPI void          epeg_quality_set               (Epeg_Image *im, int quality);
+   EAPI void          epeg_crop_set                  (Epeg_Image *im, int top, int bottom, int left, int right);
    EAPI void          epeg_thumbnail_comments_enable (Epeg_Image *im, int onoff);
    EAPI void          epeg_file_output_set           (Epeg_Image *im, const char *file);
    EAPI void          epeg_memory_output_set         (Epeg_Image *im, unsigned char **data, int *size);
    EAPI int           epeg_encode                    (Epeg_Image *im);
    EAPI int           epeg_trim                      (Epeg_Image *im);
    EAPI void          epeg_close                     (Epeg_Image *im);
-   
+
 #ifdef __cplusplus
 }
 #endif
